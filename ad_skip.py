@@ -8,6 +8,7 @@ import pytesseract
 import cv2
 import logging
 
+#pip install mss
 import mss
 import mss.tools
 
@@ -76,7 +77,9 @@ while w is not None:
     except:
         logging.info('Error in w.activate')
         w1 = pyautogui.getActiveWindow()
-        w1.minimize()
+        # YouTube가 아닌 경우 최소화.
+        if 'YouTube' not in w1.title:
+            w1.minimize()
 
     try:
         if w.isMaximized == False:
@@ -84,7 +87,9 @@ while w is not None:
     except:
         logging.info('Error in w.maximize')
         w1 = pyautogui.getActiveWindow()
-        w1.minimize()      
+        # YouTube가 아닌 경우 최소화.
+        if 'YouTube' not in w1.title:
+            w1.minimize()      
     
     for y1 in y_adjust:
         # Capture in Master Monitor.
@@ -162,7 +167,9 @@ while w is not None:
         try:
             if w1.isActive == False:
                 w1.activate()
-            w1.restore() # previous active window size restore.
+            # YouTube가 아닐경우에만.
+            if 'YouTube' not in w1.title:
+                w1.restore() # previous active window size restore.
         except:
             logging.info('Error in w1.activate')
     time.sleep(5) # Delay 5sec.
