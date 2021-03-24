@@ -19,7 +19,15 @@ second_mon_no = 1 # setup my pc's second monitor number. This may be various by 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 # mon_count = [1, 2] # monitor count is 2.
-mon_count = [1] # monitor count is 1.
+# mon_count = [1] # monitor count is 1.
+
+result = pyautogui.prompt('Please input how many monitors are displayed!(1 or 2)','Input')
+if result == '2':
+    mon_count = [1, 2] # monitor count is 2.
+elif result == '1':
+    mon_count = [1] # monitor count is 1.
+else:
+    system.exit()
 
 curr_pos = pyautogui.position() #current position
 print(curr_pos)
