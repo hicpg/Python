@@ -119,7 +119,7 @@ while w is not None:
             #img_bgr = cv2.imread('ad1.png', cv2.IMREAD_GRAYSCALE) #mastr captuer image.
             #img_bgr = cv2.imread('ad2.png', cv2.IMREAD_GRAYSCALE) #second captuer image.
             file_name = 'ad' + str(i) + str(y1) + '.png'
-            logging.info(file_name)
+            logging.info('Monitor cnt:' + str(i) + ',' + file_name)
             if i == 2:
                 # For second monitor
                 with mss.mss() as sct:
@@ -158,7 +158,7 @@ while w is not None:
             elif i == 1:
                 # ad1.png is for master monitor(filename is fixed). 
                 region1 = (x[0], y[0] + y1, width1, height1) 
-                logging.info(region1)              
+                #logging.info(region1)              
                 img1_ad = pyautogui.screenshot(file_name, region=region1)                
                 #cmd경로설정
                 pytesseract.pytesseract.tesseract_cmd = r'c:\Program Files\Tesseract-OCR\tesseract.exe'
