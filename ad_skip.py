@@ -18,7 +18,7 @@ import mss
 import mss.tools
 
 #Monitor master, second
-second_mon_no = 1 # setup my pc's second monitor number. This may be various by pc.
+#second_mon_no = 1 # setup my pc's second monitor number. This may be various by pc. 디스플레이에서 식별을 눌러 주모니터가 아닌 모니터의 번호를 확인한다.
 
 #logging config
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -26,6 +26,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 # mon_count = [1, 2] # monitor count is 2.
 # mon_count = [1] # monitor count is 1.
 
+# 모니터 대수를 입력받는다.
 result = pyautogui.prompt('Please input how many monitors are displayed!(1 or 2)','Input')
 if result == '2':
     mon_count = [1, 2] # monitor count is 2.
@@ -43,7 +44,7 @@ print(curr_pos)
 # second monitor setting(-683, 777)
 x = [1229, -683]
 y = [749, 737]
-y_adjust = [0, 30]
+y_adjust = [0, 30] #북마크바 표시유무에 따른 보정.
 pyautogui.moveTo(x[0], y[0], duration=0.25)
 pyautogui.moveTo(x[1], y[1], duration=0.25)
 
@@ -57,7 +58,7 @@ pyautogui.moveTo(curr_pos, duration=0.25)
 
 ad_skip_text = '광고건너뛰기' #korean
 
-# If YouTube -  is none, exit.
+# If YouTube -  is none, exit. 최초 시작시 YouTube창이 없으면 종료한다.
 try:
     w =  pyautogui.getWindowsWithTitle("YouTube")[0]
 except PyGetWindowException:
@@ -104,6 +105,7 @@ while w is not None:
         if 'YouTube' not in w1.title:
             w1.minimize()      
     
+    # 브라우져내 Bokkmark bar 표시유무에 따른 2번 반복.
     for y1 in y_adjust:
         # Capture in Master Monitor.
         # 캡춰시 글자 주위 밖 공간이 생기도록 충분히 캡춰해야함.
@@ -115,6 +117,7 @@ while w is not None:
         # 1350 813
         # left=1229, top=784, width=121, height=29-->39    
 
+        # 모니터 대수에 따른 반복.
         for i in mon_count:
             #img_bgr = cv2.imread('ad1.png', cv2.IMREAD_GRAYSCALE) #mastr captuer image.
             #img_bgr = cv2.imread('ad2.png', cv2.IMREAD_GRAYSCALE) #second captuer image.
