@@ -182,7 +182,8 @@ while w is not None:
                 w1.activate()
             # YouTube가 아닐경우에만.
             if 'YouTube' not in w1.title:
-                w1.restore() # previous active window size restore.
+                # w1.restore() # previous active window size restore.
+                w1.maximize() # previous active window size maximize.
         except:
             logging.info('Error in w1.activate')
     time.sleep(5) # Delay 5sec.
